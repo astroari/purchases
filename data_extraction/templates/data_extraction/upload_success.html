@@ -270,7 +270,7 @@
                                 {% if page.text %}
                                     <div class="page-text">
                                         <h3>Извлеченные данные</h3>
-                                        <p>{{ page.text }}</p>
+                                        <p>{{ page.text|safe }}</p>
                                     </div>
                                 {% endif %}
                                 

@@ -58,7 +58,7 @@ def format_extracted_text(text: str) -> str:
     
     identification_value = identification_number if identification_number else "—"
     formatted_lines.append(
-        f"- Идентификация и страна регистрации трансп. средства при отправлении/прибытии: {identification_value}"
+        f"- <strong>Идентификация и страна регистрации трансп. средства при отправлении/прибытии:</strong> {identification_value}"
     )
     
     if delivery_terms:
@@ -67,7 +67,7 @@ def format_extracted_text(text: str) -> str:
     else:
         delivery_block = "—"
     
-    formatted_lines.append(f"- Условия поставки: {delivery_block}")
+    formatted_lines.append(f"- <strong>Условия поставки:</strong> {delivery_block}")
     
     # Ensure we don't carry any accidental leading indentation on the first line
     return "\n".join(formatted_lines).lstrip()

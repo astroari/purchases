@@ -24,6 +24,13 @@ def upload_files(request):
                         'error': 'Only PDF extraction is currently implemented'
                     })
             
+            extracted_data_list.sort(
+                key=lambda data: not any(
+                    page.get('text')
+                    for page in data.get('pages', [])
+                )
+            )
+
             return render(request, 'data_extraction/upload_success.html', {
                 'file_names': file_names,
                 'file_count': len(file_names),
