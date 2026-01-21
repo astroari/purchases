@@ -116,6 +116,22 @@ def extract_pdf_data(pdf_path: str) -> Dict[str, Any]:
                 if not skip_tables:
                     tables = page.extract_tables()
                     if tables:
+                        # Apply this normalization ONLY to the first table on page 1
+                        if page_num == 1 and tables[0]:
+                            # drop header row
+                            if len(tables[0]) > 0:
+                                tables[0].pop(0)
+                            # drop first column from each remaining row (if present)
+                            for row in tables[0]:
+                                if row:
+                                    row.pop(0)
+
+                        # Drop the last two rows of the last table on the last PDF page
+                        if page_num == extracted_data['total_pages']:
+                            last_table = tables[-1]
+                            if last_table and len(last_table) >= 2:
+                                del last_table[-2:]
+
                         page_data['tables'] = tables
                         extracted_data['total_tables'] += len(tables)
                         print(tables)
