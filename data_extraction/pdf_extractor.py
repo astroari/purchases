@@ -88,7 +88,7 @@ def extract_pdf_data(pdf_path: str) -> Dict[str, Any]:
         'total_pages': 0,
         'total_tables': 0
     }
-    target_string = 'Идентификация и страна регистрации трансп. средства при отправлении/прибытии'
+    target_string = 'Идентификация и страна регистрации трансп.'
     skip_tables = False
     
     try:
